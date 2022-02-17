@@ -42,7 +42,7 @@ group :development, :test, :staging do
 end
 
 group :development do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', platforms: %i(mri mingw x64_mingw)
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0', require: false
   gem 'rubocop', require: false
@@ -55,5 +55,6 @@ group :development do
   gem 'web-console', '>= 4.1.0'
 end
 
+gem 'devise_token_auth'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
