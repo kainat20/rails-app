@@ -1,5 +1,5 @@
 # README
-## Shelter API
+## OMS API
 
 ### Development Setup
 - Ruby version 2.7.1
