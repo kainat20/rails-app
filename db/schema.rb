@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2022_02_17_181622) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "email", null: false
-    t.string "phone"
-    t.string "type", default: "customer", null: false
+    t.string "phone", null: false
+    t.string "type", null: false
     t.json "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

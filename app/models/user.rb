@@ -3,8 +3,11 @@
 class User < ApplicationRecord
   extend Devise::Models
 
-  self.abstract_class = true
+  devise :database_authenticatable, :recoverable, :rememberable
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable
   include DeviseTokenAuth::Concerns::User
+
+  validates :name, :email, presence: true
+  validates :password, :password_confirmation, presence: true, on: :create
+  validates :email, format: { with: Devise.email_regexp }
 end

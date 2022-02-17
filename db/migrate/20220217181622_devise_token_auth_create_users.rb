@@ -20,8 +20,8 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.0]
       ## User Info
       t.string :name, null: false
       t.string :email, null: false
-      t.string :phone
-      t.string :type, null: false, default: 'customer'
+      t.string :phone, null: false
+      t.string :type, null: false
 
       ## Tokens
       t.json :tokens
