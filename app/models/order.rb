@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
   validates :number, :date, :payment_type, :line_items, :shipping_address, presence: true
-  validates :number, uniqueness: true
+  validates :number, uniqueness: true, numericality: { greater_than: 0 }
 
   enum payment_type: { cash: 'cash', credit_card: 'credit_card', check: 'check', other: 'other' }
 
