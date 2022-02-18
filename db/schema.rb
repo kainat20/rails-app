@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_233849) do
+ActiveRecord::Schema.define(version: 2022_02_18_124026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "upc", default: -> { "nextval('products_upc_sequence'::regclass)" }, null: false
+    t.text "description"
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.decimal "weight", precision: 6, scale: 2
+    t.string "weight_unit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["upc"], name: "index_products_on_upc", unique: true
+  end
 
   create_table "shipping_addresses", force: :cascade do |t|
     t.string "address_line", null: false
