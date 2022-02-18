@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   include DeviseTokenAuth::Concerns::User
 
-  validates :name, :email, presence: true
+  validates :name, :email, :phone, presence: true
   validates :password, :password_confirmation, presence: true, on: :create
   validates :email, format: { with: Devise.email_regexp }
 end

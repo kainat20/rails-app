@@ -3,6 +3,7 @@
 class Customer < User
   devise :registerable
 
-  validates :phone, presence: true, uniqueness: true
-  validates :email, uniqueness: true
+  has_one :shipping_address, as: :addressable, class_name: 'ShippingAddress', dependent: :destroy
+
+  validates :email, :phone, uniqueness: true
 end
