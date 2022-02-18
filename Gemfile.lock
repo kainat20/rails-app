@@ -101,6 +101,10 @@ GEM
       rails (>= 4.2.0, < 6.2)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     equalizer (0.0.11)
     erubi (1.10.0)
     erubis (2.7.0)
@@ -112,8 +116,6 @@ GEM
     faker (2.19.0)
       i18n (>= 1.6, < 2)
     ffi (1.15.5)
-    figaro (1.2.0)
-      thor (>= 0.14.0, < 2)
     flay (2.12.1)
       erubis (~> 2.7.0)
       path_expander (~> 1.0)
@@ -333,9 +335,9 @@ DEPENDENCIES
   byebug
   database_cleaner-active_record (~> 2.0.1)
   devise_token_auth
+  dotenv-rails
   factory_bot_rails
   faker
-  figaro
   letter_opener_web
   listen (~> 3.3)
   pg (>= 0.18, < 2.0)
