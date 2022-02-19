@@ -19,4 +19,9 @@ class User < ApplicationRecord
   def customer?
     type == Customer.name
   end
+
+  # Addes a custom attribute to the successful sign_in response
+  def as_json(options = {})
+    super(options).merge({ type: type })
+  end
 end
