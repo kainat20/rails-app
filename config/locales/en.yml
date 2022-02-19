@@ -6,6 +6,8 @@ en:
       record_not_unique: Another record with provide detail(s) already exists
       unauthorized: You're not authorized to perform this action. Please contact Admin
   customer:
+    errors:
+        deletion: Customer with Order(s) cannot be deleted
     notifications:
       email:
         subject: Complete invitation

@@ -28,3 +28,6 @@
 
 # Ignore environment variables
 .env
+
+*.idea/
+*.DS_Store

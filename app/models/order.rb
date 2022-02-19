@@ -10,5 +10,6 @@ class Order < ApplicationRecord
 
   enum payment_type: { cash: 'cash', credit_card: 'credit_card', check: 'check', other: 'other' }
 
+  accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :line_items
 end

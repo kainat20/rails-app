@@ -21,44 +21,46 @@ module Api
       end
 
       def show
-        render json: resource
+        render json: record
       end
 
       def update
-        if resource.update(permitted_params)
-          render json: resource, each_serializer: serializer
+        if record.update(record_permitted_params)
+          render json: record, each_serializer: serializer
         else
-          render json: { message: resource.errors.full_messages }, status: :unprocessable_entity
+          render json: { message: record.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
       def destroy
-        if resource.destroy
-          render json: resource, each_serializer: serializer
+        if record.destroy
+          render json: record, each_serializer: serializer
         else
-          render json: { message: resource.errors.full_messages }, status: :unprocessable_entity
+          render json: { message: record.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
       protected
 
-        def collection
-          @collection ||= BaseCollection.new(relation, filter_params).results
-        end
-
         def relation
           @relation ||= model.all
         end
 
-        def resource
-          @resource ||= model.find(params[:id])
+        def collection
+          @collection ||= BaseCollection.new(relation, filter_params).results
         end
 
         def new_resource
           @new_resource ||= model.new(permitted_params)
         end
 
+        def record
+          @record ||= model.find(params[:id])
+        end
+
         def permitted_params; end
+
+        def record_permitted_params; end
 
         def filter_params
           params.permit
