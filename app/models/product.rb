@@ -15,10 +15,6 @@ class Product < ApplicationRecord
   before_save :prevent_upc_change
   before_destroy :validate_deletion, prepend: true
 
-  class << self
-    attr_accessor :skip_authorization
-  end
-
   private
 
     def prevent_upc_change

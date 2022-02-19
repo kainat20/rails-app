@@ -8,9 +8,9 @@ module Api
       actions :create, :update, :destroy
 
       def index
-        Product.skip_authorization = true
+        raise ActiveRecord::RecordNotFound, controller_name.camelize.singularize if relation.blank?
 
-        super
+        render json: serialize(collection, serializer)
       end
 
       private
