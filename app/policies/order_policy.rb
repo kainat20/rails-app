@@ -11,4 +11,8 @@ class OrderPolicy
   def index?
     user.admin? || record.pluck(:customer_id).include?(user.id)
   end
+
+  def create?
+    user.admin? || user.customer?
+  end
 end

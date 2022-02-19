@@ -12,4 +12,12 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :line_items
+
+  after_create_commit :update_total_value
+
+  private
+
+    def update_total_value
+      update!(total_value: line_items.sum(:product_price))
+    end
 end

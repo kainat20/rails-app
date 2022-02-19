@@ -6,6 +6,8 @@ module Api
       before_action :authenticate_user!
       before_action :authorize_user!, only: :index
 
+      actions :create
+
       def index
         raise ActiveRecord::RecordNotFound, controller_name.camelize.singularize if relation.blank?
 
@@ -20,6 +22,14 @@ module Api
 
         def customer
           @customer ||= Customer.find(params[:customer_id])
+        end
+
+        def permitted_params
+          Orders::ParamsValidators::Create.new(params).execute
+        end
+
+        def new_resource
+          @new_resource ||= customer.orders.new(permitted_params)
         end
 
         def authorized?
