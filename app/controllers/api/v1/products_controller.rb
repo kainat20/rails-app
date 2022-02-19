@@ -5,7 +5,7 @@ module Api
     class ProductsController < Auth::BaseController
       before_action :authenticate_user!, except: :index
 
-      actions :create, :update
+      actions :create, :update, :destroy
 
       def index
         Product.skip_authorization = true

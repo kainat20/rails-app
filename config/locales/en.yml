@@ -7,9 +7,14 @@ en:
       unauthorized: You're not authorized to perform this action. Please contact Admin
   customer:
     errors:
-        deletion: Customer with Order(s) cannot be deleted
+      deletion: Customer with Order(s) cannot be deleted
     notifications:
       email:
         subject: Complete invitation
         welcome: Welcome
+  product:
+    errors:
+      deletion: Purchased product cannot be deleted
+      upc:
+        read_only: Cannot be changed
 

@@ -12,7 +12,28 @@ class Product < ApplicationRecord
   validates :weight_unit, presence: true, if: -> { weight.present? }
   validates :weight_unit, inclusion: { in: ALLOWED_WEIGHT_UNITS.values }, if: -> { weight_unit.present? }
 
+  before_save :prevent_upc_change
+  before_destroy :validate_deletion, prepend: true
+
   class << self
     attr_accessor :skip_authorization
   end
+
+  private
+
+    def prevent_upc_change
+      return if new_record?
+
+      errors.add(:upc, I18n.t('product.errors.upc.read_only'))
+
+      raise ActiveRecord::RecordInvalid
+    end
+
+    def validate_deletion
+      return if line_items.blank?
+
+      errors.add(:base, I18n.t('product.errors.deletion'))
+
+      throw :abort
+    end
 end
