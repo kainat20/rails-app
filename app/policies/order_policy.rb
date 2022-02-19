@@ -19,4 +19,8 @@ class OrderPolicy
   def show?
     user.admin? || user.id == record.customer_id
   end
+
+  def destroy?
+    show?
+  end
 end

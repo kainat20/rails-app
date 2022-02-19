@@ -6,7 +6,7 @@ module Api
       before_action :authenticate_user!
       before_action :authorize_user!, except: :create
 
-      actions :create, :show
+      actions :create, :show, :destroy
 
       def index
         raise ActiveRecord::RecordNotFound, controller_name.camelize.singularize if relation.blank?
