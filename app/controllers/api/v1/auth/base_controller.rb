@@ -9,7 +9,7 @@ module Api
         before_action :authorize_user!, except: %i(index create)
 
         def index
-          authorize model
+          authorize model unless model.skip_authorization
 
           super
         end

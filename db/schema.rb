@@ -39,12 +39,14 @@ ActiveRecord::Schema.define(version: 2022_02_18_141934) do
 
   create_table "products", force: :cascade do |t|
     t.bigint "upc", default: -> { "nextval('products_upc_sequence'::regclass)" }, null: false
-    t.text "description"
+    t.string "title", null: false
+    t.text "description", null: false
     t.decimal "price", precision: 8, scale: 2, null: false
     t.decimal "weight", precision: 6, scale: 2
     t.string "weight_unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_products_on_title"
     t.index ["upc"], name: "index_products_on_upc", unique: true
   end
 
