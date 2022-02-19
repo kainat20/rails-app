@@ -15,4 +15,8 @@ class OrderPolicy
   def create?
     user.admin? || user.customer?
   end
+
+  def show?
+    user.admin? || user.id == record.customer_id
+  end
 end
