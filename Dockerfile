@@ -1,7 +1,7 @@
 FROM ruby:2.7.1
 
 # Install system dependencies
-RUN apt-get update -qq && apt-get install -y nodejs npm postgresql-client
+RUN apt-get update -qq && apt-get install -y postgresql-client
 
 # Set up the working directory
 WORKDIR /app
