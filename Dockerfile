@@ -13,4 +13,4 @@ RUN bundle install
 # Copy the application code
 COPY . .
 
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+ENTRYPOINT ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
