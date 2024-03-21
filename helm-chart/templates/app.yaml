@@ -7,7 +7,7 @@ metadata:
     app: rails
 spec:
   #replicas: 1
-  replicaCount: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: rails
@@ -19,6 +19,6 @@ spec:
       containers:
         - name: rails-container
           #image: sanakainat/rails-app:latest
-          image: {{ .Values.image }}.{{ .Values.image.tag }}
+          image: {{ .Values.image.repo }}.{{ .Values.image.tag }}
           ports:
             - containerPort: 3000

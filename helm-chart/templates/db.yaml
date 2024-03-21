@@ -23,7 +23,7 @@ spec:
       containers:
         - name: db-container
           #image: postgres:14.1
-          image: {{ .Values.image }}.{{ .Values.image.tag }}
+          image: {{ .Values.db_image.repo }}.{{ .Values.db_image.tag }}
           ports:
             - containerPort: 5432
                 volumeMounts:
