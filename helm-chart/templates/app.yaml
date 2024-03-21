@@ -1,11 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rails-deployment
+  #name: rails-deployment 
+  name: {{ .Release.Name }}-deployment
   labels:
     app: rails
 spec:
-  replicas: 1
+  #replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: rails
@@ -16,6 +18,7 @@ spec:
     spec:
       containers:
         - name: rails-container
-          image: sanakainat/rails-app:latest
+          #image: sanakainat/rails-app:latest
+          image: {{ .Values.deployments.app.image.repo }}:{{ .Values.deployments.app.image.tag }}
           ports:
             - containerPort: 3000

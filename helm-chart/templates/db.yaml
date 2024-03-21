@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-deployment
+  name: {{ .Release.Name }}-deployment
   labels:
     app: db
 spec:
-  replicas: 1
+  replicaCount: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: db
@@ -14,11 +14,19 @@ spec:
       labels:
         app: db
     spec:
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data-pvc
       containers:
         - name: db-container
-          image: postgres:14.1
+          # image: postgres:14.1
+          image: {{ .Values.deployments.db.image.repo }}:{{ .Values.deployments.db.image.tag }}
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -29,7 +37,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
-                  key: db_password             
+                  key: db_password
             - name: POSTGRES_HOST
               valueFrom:
                 configMapKeyRef:

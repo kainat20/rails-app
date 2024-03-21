@@ -1,0 +1,14 @@
+replicaCount: 1
+
+deployments:
+  app:
+    image:
+      repo: sanakainat/rails-app
+      pullPolicy: IfNotPresent
+      tag: "latest"
+
+  db:
+    image:
+      repo: postgres
+      pullPolicy: IfNotPresent
+      tag: "14.1"
